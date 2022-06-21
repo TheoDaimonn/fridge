@@ -6,7 +6,7 @@ QIWI_PRIV_KEY = "eyJ2ZXJzaW9uIjoiUDJQIiwiZGF0YSI6eyJwYXlpbl9tZXJjaGFudF9zaXRlX3V
 p2p = QiwiP2P(auth_key=QIWI_PRIV_KEY)
 def create_de_trans(id):
     # Выставим счет на сумму 228 рублей который будет работать 45 минут
-    new_bill = p2p.bill(bill_id=id, amount=1, lifetime=45)
+    new_bill = p2p.bill(bill_id=id, amount=50, lifetime=45)
 
     return new_bill.pay_url
 

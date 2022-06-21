@@ -33,28 +33,31 @@ def replace_statement(id, final_value):
 def best_of_five(ingr):
     f = open('currentingr.txt', 'r', encoding='utf-8').readline().split('|')
     print(f)
-    mass = {}
-    for i in f:
-        co = 0
-        po = len(i)
-        for k in ingr:
-            if k in i:
-                g = list(i)
-                g.remove(k)
-                co += 1
-        mass.setdefault(co/po, i)
-    e = mass.keys()
-    e1 = []
-    for d in e:
-        e1.append(float(d))
-    if len(e1)>5:
-        e1 = sorted(e1)[-5::]
-    else:
-        e1 = sorted(e1)
-    final = []
-    for s in e1:
-        final.append(mass[s])
-    return final
+    try:
+        mass = {}
+        for i in f:
+            co = 0
+            po = len(i)
+            for k in ingr:
+                if k in i:
+                    g = list(i)
+                    g.remove(k)
+                    co += 1
+            mass.setdefault(co/po, i)
+        e = mass.keys()
+        e1 = []
+        for d in e:
+            e1.append(float(d))
+        if len(e1)>5:
+            e1 = sorted(e1)[-5::]
+        else:
+            e1 = sorted(e1)
+        final = []
+        for s in e1:
+            final.append(mass[s])
+        return final
+    except Exception:
+        print(1)
 
 def add_to_cart(id, value):
     co = 0
