@@ -128,3 +128,4 @@ def check_date(date):
     if new_date > date:
         h = open('already used', 'w', encoding='utf-8')
         h.write('000|')
+    return new_date

@@ -19,7 +19,7 @@ def send_welcome(message):
     bot.send_message(message.chat.id, '''Добро пожаловать! Это бот "Бармен Джон", призванный упростить вашу жизнь, 
     порадовать себя и близких вкуснейшими, необычными рецептами из того, что есть у вас дома''',
                      reply_markup=keyboard)
-    check_date(date)
+    date = check_date(date)
 
 
 @bot.message_handler()
@@ -158,7 +158,7 @@ P.P.P.S. Не забудьте про лЁд""", reply_markup=markup)
         bot.send_message(message.chat.id,
                          'Что то пошло не так. Пропишите, пожалуйста  команду /start и свяжитесь с тех поддержкой.')
 
-    check_date(date)
+    date = check_date(date)
 bot.infinity_polling()
 
 # по итогу 1 дня мы сформировали приветствие, старт сбора данных об ингридиентах, разработали алгоритм подбора пяти и работы с фазами
