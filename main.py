@@ -3,12 +3,14 @@ import telebot
 from telebot import types
 from others import *
 from payment_dict import *
+from datetime import datetime
+date = str(datetime.now()).split(' ')[0].split('-')[2]
 
 bot = telebot.TeleBot("5403904951:AAEUalDX40Rnmj36Vv71nwCslEN4kgjpwfc", parse_mode=None)
 
-
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
+    global date
     adding_statement(str(message.chat.id) + ' 1')
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     callback_button = types.InlineKeyboardButton(text="ну что ж, начнем", callback_data="1")
@@ -17,10 +19,12 @@ def send_welcome(message):
     bot.send_message(message.chat.id, '''Добро пожаловать! Это бот "Бармен Джон", призванный упростить вашу жизнь, 
     порадовать себя и близких вкуснейшими, необычными рецептами из того, что есть у вас дома''',
                      reply_markup=keyboard)
+    check_date(date)
 
 
 @bot.message_handler()
 def start_proccesing(message):
+    global date
     st = check_statement(message.chat.id)
     don_status = check_don(message.chat.id)
     if st == '1' and message.text != 'Начать процесс поиска рецептов по моим компонентам' and message.text != 'Оформить ежемесячную подписку на наш сервис' or message.text == '/start' or message.text == 'Вернуться на начальное окно':
@@ -154,7 +158,7 @@ P.P.P.S. Не забудьте про лЁд""", reply_markup=markup)
         bot.send_message(message.chat.id,
                          'Что то пошло не так. Пропишите, пожалуйста  команду /start и свяжитесь с тех поддержкой.')
 
-
+    check_date(date)
 bot.infinity_polling()
 
 # по итогу 1 дня мы сформировали приветствие, старт сбора данных об ингридиентах, разработали алгоритм подбора пяти и работы с фазами

@@ -1,3 +1,4 @@
+from datetime import datetime
 def adding_statement(value):
     f = open('statement', 'r', encoding='utf-8').readlines()
     if value not in f and value + '\n' not in f:
@@ -121,3 +122,9 @@ def discard_pplfood(id):
         if k.split('|')[0] != str(id):
             m.write(k)
     m.close()
+
+def check_date(date):
+    new_date = str(datetime.now()).split(' ')[0].split('-')[2]
+    if new_date > date:
+        h = open('already used', 'w', encoding='utf-8')
+        h.write('000|')
