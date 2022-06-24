@@ -58,7 +58,7 @@ def best_of_five(ingr):
             final.append(mass[s])
         return final
     except Exception:
-        print(1)
+        return ['мы не нашли']
 
 def add_to_cart(id, value):
     co = 0
@@ -112,6 +112,8 @@ def searching(id):#(на выходе массив с ккотейлями)
                 break
         if check != 1:
             gotowaya_viborka.append(t)
+    while '' in gotowaya_viborka:
+        gotowaya_viborka.remove('')
     print(gotowaya_viborka)
     return gotowaya_viborka
 
